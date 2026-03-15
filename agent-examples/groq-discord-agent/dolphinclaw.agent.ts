@@ -1,7 +1,7 @@
 import axios from "axios";
 import OpenAI from "openai";
 
-// Configure seu cliente OpenAI
+// Our OpenAI Agent
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "YOUR_API_KEY_HERE",
   baseURL: "https://api.groq.com/openai/v1",
