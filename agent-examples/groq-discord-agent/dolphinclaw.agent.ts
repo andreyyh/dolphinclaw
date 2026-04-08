@@ -8,7 +8,7 @@ const client = new OpenAI({
 });
 
 // Discord webhook
-const WEBHOOK = "https://discord.com/api/webhooks/1481885137980620823/4nhngylbEmv_dyAObw5EZEQTNNL5gfvhhrgcTBvk-H6PHiT9BzUSnSbF-xNwQ_Pyg5At";
+const WEBHOOK = "https://discord.com/api/webhooks/...";
 
 export const dailyAiReporter = {
   name: "daily-ai-reporter",
