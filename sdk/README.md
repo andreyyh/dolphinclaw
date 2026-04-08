@@ -77,7 +77,8 @@ While standard `console.log` works, using the SDK provides several advantages:
 
 1.  **Dashboard Visuals:** Logs are color-coded in the DolphinClaw terminal based on their type.
 2.  **Structured Debugging:** Metadata is parsed as JSON, making it easier to inspect complex objects.
-3.  **Future-Proofing:** Upcoming features like **Persistent Memory** and **Wallet Interactions** will be exposed through this SDK.
+3.  **Type Safety:** Built-in TypeScript definitions for a better developer experience.
+4.  **Future-Proofing:** Upcoming features like **Persistent Memory** and **Wallet Interactions** will be exposed through this SDK.
 
 ---
 

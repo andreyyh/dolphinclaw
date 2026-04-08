@@ -1,0 +1,16 @@
+# Ignore local development files
+node_modules/
+.npmrc
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore git
+.git/
+.gitignore
+
+# Ignore any local scripts or temp files
+scripts/
+tmp/
