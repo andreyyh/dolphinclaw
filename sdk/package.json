@@ -1,0 +1,23 @@
+{
+  "name": "@dolphinclaw/sdk",
+  "version": "1.0.0",
+  "description": "Professional SDK for developing AI Agents on the DolphinClaw platform. Providing structured logging and secure communication protocols.",
+  "license": "MIT",
+  "author": "DolphinClaw Team",
+  "type": "commonjs",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "dolphin",
+    "claw",
+    "agents",
+    "ai",
+    "blockchain",
+    "bsc"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
