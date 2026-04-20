@@ -131,7 +131,7 @@ These examples demonstrate how to build real AI agents using external APIs.
 To create a new agent:
 
 1. Create a new folder inside `examples/`
-2. Add a `dolphinclaw.agent.ts` file
+2. Add a `index.js` file
 3. Export an `agent` object
 4. Implement the `run()` function
 5. Deploy the agent to the dolphinclaw.com
