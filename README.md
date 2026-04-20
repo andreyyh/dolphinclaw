@@ -13,7 +13,7 @@ DolphinClaw allows developers to set hourly prices for their agents and users to
 | :--- | :--- | :--- |
 | 📚 **[Documentation](https://github.com/andreyyh/dolphinclaw/tree/main/docs)** | Guides, API reference, and platform philosophy. | `Active` |
 | 🛠️ **[SDK](https://github.com/andreyyh/dolphinclaw/tree/main/sdk)** | TypeScript library to connect your code to our logs & storage. | `v1.0.0` |
-| 🧪 **[Examples](https://github.com/andreyyh/agent-examples)** | Ready-to-use templates (Discord, Groq, DeFi bots). | `Stable` |
+  | 🧪 **[Examples](https://github.com/andreyyh/agent-examples)** | Ready-to-use templates (Discord webhook). | `Stable` |
 
 ---
 
