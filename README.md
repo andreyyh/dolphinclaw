@@ -40,24 +40,42 @@ Creating an agent takes less than 2 minutes.
 
 ---
 
-## 🧪 Minimal Agent
+## 🧪 Minimal Agent Code
 
-A DolphinClaw agent is just a structured module with a `run()` function.
+A DolphinClaw agent is a standard Node.js script. There is no need for complex exports or wrappers.
 
-```ts
-export const agent = {
-  name: "ping-bot",
-  description: "Simple ping-pong logic",
+```javascript
+const { DolphinSDK } = require('@dolphinclaw/sdk');
 
-  async run(input) {
-    console.log("Agent received:", input);
-    return {
-      success: true,
-      message: "Pong! Infrastructure check complete."
-    }
-  }
-}
+// Logic starts immediately upon execution
+DolphinSDK.log("info", "Ping-bot started. Checking infrastructure...");
+
+// Simple ping-pong logic
+setTimeout(() => {
+  // Use success() to report a completed task to the dashboard
+  DolphinSDK.success("Pong! Infrastructure check complete.", {
+    timestamp: Date.now(),
+    ping: "pong"
+  });
+  
+  // Exit gracefully after the task is done
+  process.exit(0);
+}, 2000);
 ```
+
+## How to Run
+
+1. **Initialize**: Ensure you have a `package.json` in your repository.
+2. **Install SDK**: Add `@dolphinclaw/sdk` to your dependencies.
+3. **Execute**: The DolphinClaw platform will run `node index.js` automatically.
+
+## Requirements Checklist
+
+- [ ] `package.json` at root
+- [ ] `index.js` as entry point
+- [ ] Uses `DolphinSDK` for feedback
+- [ ] Handles `SIGTERM` (optional but recommended for long-running agents)
+
 
 ---
 
