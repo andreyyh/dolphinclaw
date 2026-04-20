@@ -4,58 +4,54 @@
 
 # Agent Structure
 
-An agent is just a simple module with a `run()` function.
-**DolphinClaw handles the infrastructure.**
+A DolphinClaw agent is a standard Node.js script. **DolphinClaw handles the infrastructure and execution.**
 
-Every DolphinClaw agent must export an object with the following fields:
-
-| Field         | Required     | Description                                          |
-| ------------- | ------------ | ---------------------------------------------------- |
-| `name`        | ✅           | Unique name of the agent                             |
-| `description` | ✅           | Short explanation of what the agent does             |
-| `setup()`     | ⚠️ optional  | Initialization logic that runs when the agent starts |
-| `run()`       | ✅           | Main function executed by the platform               |
-| `return`      | ✅           | The result object returned by the agent              |
+To interact with the Dashboard and send rich data (logs, results, and statuses), you should use the official **DolphinSDK**. This ensures your agent's activity is correctly captured and displayed in real-time.
 
 ---
 
-# Minimal Agent Example
+# Requirements
 
-```ts
-export const agent = {
-  name: "example-agent",
-  description: "Example DolphinClaw agent",
+1. **package.json**: Must be present at the root of your repository for dependency installation.
+2. **index.js**: The main entry point of your agent.
 
-  async setup() {
-    console.log("Agent initialized")
-  },
+---
 
-  async run(input = {}) {
+# DolphinSDK Methods
 
-    const param = input.topic
-	
-	if(!param) {
-		return {
-			success: false, 
-			message: "No topic provided."
-		}
-	}
-	
-	if(!invoke_claude(param)) { // example
-		return {
-			success: false, 
-			message: "Failed to invoke claude."
-		}
-	}
-	
-    return {
-      success: true,
-      message: `Agent executed for topic: ${topic}`
-    }
+| Method | Description |
+| :--- | :--- |
+| `DolphinSDK.log(type, message, data)` | Sends an informative log with optional metadata. |
+| `DolphinSDK.success(message, result)` | Reports a successful operation or completed task. |
+| `DolphinSDK.error(message, error)` | Reports a failure, warning, or caught exception. |
+
+---
+
+# Minimal Agent Example (`index.js`)
+
+```javascript
+const { DolphinSDK } = require('@dolphinclaw/sdk');
+
+DolphinSDK.log('info', 'Agent started successfully');
+
+// Main agent logic
+setInterval(() => {
+  DolphinSDK.log('info', 'Scanning market data...');
+  
+  if (Math.random() > 0.7) {
+    DolphinSDK.success('Arbitrage opportunity found!', { 
+      profit: "0.05 ETH",
+      pair: "WETH/USDC"
+    });
   }
-}
-```
+}, 5000);
 
+// Handle graceful shutdown (SIGTERM)
+process.on('SIGTERM', () => {
+  DolphinSDK.log('info', 'SIGTERM received. Cleaning up...');
+  process.exit(0);
+});
+```
 
 ---
 
@@ -63,78 +59,28 @@ export const agent = {
 
 When an agent runs on the DolphinClaw platform, the following lifecycle occurs:
 
-```
-Agent loaded
-↓
-setup() runs
-↓
-run(input) executes
-↓
-result is returned
-```
-
-* `setup()` runs once when the agent initializes.
-* `run()` executes whenever the platform triggers the agent.
-
----
-
-# Input
-
-Agents can accept parameters via the `input` argument.
-
-Example:
-
-```ts
-run({
-  topic: "BNB ecosystem"
-})
-```
-
-Inside the agent:
-
-```ts
-const topic = input.topic
-```
-
----
-
-# Output
-
-Agents must return a structured response.
-
-Example:
-
-```ts
-return {
-  success: true,
-  message: "Task completed"
-}
-```
-
-This response can be logged, stored, or used by other agents on the platform.
+1.  **Mounting**: Platform downloads the code and installs dependencies (`npm install`).
+2.  **Boot**: Docker container launches `index.js` or custom entrypoint file.
+3.  **Real-time Feedback**: Data sent via `DolphinSDK` is displayed instantly in the Browser Console.
+4.  **Termination**: When you stop the agent, a `SIGTERM` signal is sent. Your agent has 10 seconds to cleanup before the container is killed.
 
 ---
 
 # Example Agents
 
-This repository includes example agents:
+This repository includes real-world demonstration agents:
 
 * **Groq Discord Agent**
   Uses an AI model to generate responses and post them to a Discord webhook.
-
-These examples demonstrate how to build real AI agents using external APIs.
 
 ---
 
 # Creating Your Own Agent
 
-To create a new agent:
-
-1. Create a new folder inside `examples/`
-2. Add a `index.js` file
-3. Export an `agent` object
-4. Implement the `run()` function
-5. Deploy the agent to the dolphinclaw.com
+1. Create a repository with a `package.json` and `index.js`.
+2. Add `@dolphinclaw/sdk` to your dependencies.
+3. Implement your logic and use `DolphinSDK` for feedback.
+4. Deploy/Import the repository link to **dolphinclaw.com**.
 
 ---
 
@@ -142,9 +88,8 @@ To create a new agent:
 
 DolphinClaw agents are designed to be:
 
-* simple
-* modular
-* open-source
-* composable
+* **Clean**: Use a professional SDK for all platform communication.
+* **Simple**: No boilerplate or complex exports.
+* **Modular**: Small scripts that do one thing well.
 
-Developers should focus only on the **agent logic**, while the DolphinClaw platform handles execution, scheduling, and infrastructure.
+Developers focus on the **agent logic**, while the DolphinClaw platform handles execution, sandboxing, and logs.
