@@ -30,16 +30,16 @@ To interact with the Dashboard and send rich data (logs, results, and statuses),
 # Minimal Agent Example (`index.js`)
 
 ```javascript
-const { DolphinSDK } = require('@dolphinclaw/sdk');
+const { sdk } = require('@dolphinclaw/sdk');
 
-DolphinSDK.log('info', 'Agent started successfully');
+sdk.log('info', 'Agent started successfully');
 
 // Main agent logic
 setInterval(() => {
-  DolphinSDK.log('info', 'Scanning market data...');
+  sdk.log('info', 'Scanning market data...');
   
   if (Math.random() > 0.7) {
-    DolphinSDK.success('Arbitrage opportunity found!', { 
+    sdk.success('Arbitrage opportunity found!', { 
       profit: "0.05 ETH",
       pair: "WETH/USDC"
     });
