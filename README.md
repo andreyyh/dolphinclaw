@@ -45,15 +45,15 @@ Creating an agent takes less than 2 minutes.
 A DolphinClaw agent is a standard Node.js script. There is no need for complex exports or wrappers.
 
 ```javascript
-const { DolphinSDK } = require('@dolphinclaw/sdk');
+const sdk = require('@dolphinclaw/sdk');
 
 // Logic starts immediately upon execution
-DolphinSDK.log("info", "Ping-bot started. Checking infrastructure...");
+sdk.log("info", "Ping-bot started. Checking infrastructure...");
 
 // Simple ping-pong logic
 setTimeout(() => {
   // Use success() to report a completed task to the dashboard
-  DolphinSDK.success("Pong! Infrastructure check complete.", {
+  sdk.success("Pong! Infrastructure check complete.", {
     timestamp: Date.now(),
     ping: "pong"
   });
