@@ -1,0 +1,12 @@
+{
+  "name": "dolphin-test-agent",
+  "version": "1.0.0",
+  "description": "Test agent para validar o DolphinRunner",
+  "main": "test-agent-index.js",
+  "scripts": {
+    "start": "node test-agent-index.js"
+  },
+  "dependencies": {
+    "@dolphinclaw/sdk": "latest"
+  }
+}
