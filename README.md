@@ -67,12 +67,12 @@ setTimeout(() => {
 
 1. **Initialize**: Ensure you have a `package.json` in your repository.
 2. **Install SDK**: Add `@dolphinclaw/sdk` to your dependencies.
-3. **Execute**: The DolphinClaw platform will run `node index.js` automatically.
+3. **Execute**: The DolphinClaw platform will run `index.js` automatically.
 
 ## Requirements Checklist
 
 - [ ] `package.json` at root
-- [ ] `index.js` as entry point
+- [ ] `index.js` as entry point (or custom entrypoint file)
 - [ ] Uses `DolphinSDK` for feedback
 - [ ] Handles `SIGTERM` (optional but recommended for long-running agents)
 
